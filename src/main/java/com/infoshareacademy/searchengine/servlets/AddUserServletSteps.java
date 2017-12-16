@@ -44,7 +44,7 @@ public class AddUserServletSteps extends HttpServlet {
         } else if (req.getParameter("step").equals("3")) {
             req.getSession().setAttribute("gender", req.getParameter("gender"));
             User user = new User();
-            user.setId((Integer) req.getSession().getAttribute("id"));
+            user.setId(Integer.parseInt((String) req.getSession().getAttribute("id")));
             user.setLogin((String) req.getSession().getAttribute("login"));
             user.setName((String) req.getSession().getAttribute("name"));
             user.setSurname((String) req.getSession().getAttribute("surname"));
