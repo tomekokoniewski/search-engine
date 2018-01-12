@@ -1,9 +1,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
+<head>
+    <title>search engine [users-list.jsp]</title>
+</head>
+
 <body>
 
-<!--<//%@ include file="go-back.jsp" %>-->
+<%@ include file="go-back.jsp" %>
 
 <c:forEach var="entry" items="${list}">
 
@@ -39,7 +43,5 @@
 </c:forEach>
 
 </body>
-<head>
-    <title>search engine [users-list.jsp]</title>
-</head>
+
 </html>

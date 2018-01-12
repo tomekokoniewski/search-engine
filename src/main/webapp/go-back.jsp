@@ -6,6 +6,7 @@
 </head>
 <body>
 <div>[<a href="<c:url value="/index.jsp"/>">BACK <- Strona główna</a>]</div>
+<div></div>
 <br/>
 <hr/>
 <br/>

@@ -16,11 +16,11 @@ public class WelcomeUserServlet extends HttpServlet {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
-
-     //   req.setAttribute("salary", req.getAttribute("salary")); niepotrzebne - w requescie mamy juz ustawiony atrybut
+        //req.setAttribute("salary", req.getAttribute("salary"));
+        // powyzsze niepotrzebne - w requescie mamy juz ustawiony atrybut - zdefiniowane w "SalaryIncrementFilter"
         req.setAttribute("name", req.getParameter("name"));
-
         req.getSession().setAttribute("sessionName", req.getParameter("name"));
+
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/welcome-user.jsp");
         requestDispatcher.forward(req, resp);
     }

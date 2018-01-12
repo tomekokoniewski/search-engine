@@ -48,7 +48,7 @@ public class AddUserServletSteps extends HttpServlet {
             user.setLogin((String) req.getSession().getAttribute("login"));
             user.setName((String) req.getSession().getAttribute("name"));
             user.setSurname((String) req.getSession().getAttribute("surname"));
-            user.setAge((Integer) req.getSession().getAttribute("age"));
+            user.setAge(Integer.parseInt((String) req.getSession().getAttribute("age")));
 
             if(req.getSession().getAttribute("gender")=="MAN")
                 user.setGender((Gender.MAN));
@@ -57,8 +57,6 @@ public class AddUserServletSteps extends HttpServlet {
 
             usersRepositoryDao.addUser(user);
             req.getSession().invalidate();
-
-
         }
    }
 }

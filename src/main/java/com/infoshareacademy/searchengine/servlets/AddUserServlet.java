@@ -25,16 +25,17 @@ public class AddUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 
-        if (req.getParameter("id") == null || //req.getParameter("name") == null ||
-                req.getParameter("surname") == null || req.getParameter("age") == null ||
-                req.getParameter("login") == null) {
+        if (req.getParameter("id").isEmpty()||//== null ||
+                req.getParameter("name").isEmpty()||// == null ||
+                req.getParameter("surname").isEmpty()||// == null ||
+                req.getParameter("age").isEmpty()||// == null ||
+                req.getParameter("login").isEmpty()){// == null) {
             resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            PrintWriter printWriter=resp.getWriter();
+            printWriter.println("Status 400, BAD_REQUEST Za 5 sec zostaniesz przekierowany z powrotem");
+            resp.setHeader("Refresh","5; /add-user.jsp"); // niestety form bedzie wyczyszczony - mamy refresh
             return;
         }
-
-
-
-
 
 
         String gender;
@@ -59,7 +60,6 @@ public class AddUserServlet extends HttpServlet {
             return;
         }
 
-
         User user1 = new User();
         user1.setId(id);
         user1.setName(name);
@@ -83,7 +83,9 @@ public class AddUserServlet extends HttpServlet {
         prWr.println("<html>");
         prWr.println("<body>");
 
-      prWr.println(id+" "+name+" "+surname+" "+" "+age+" "+login);
+      prWr.println("Dodano uzytkownika:");
+      prWr.println("ID: "+id+"<br>Name: "+name+"<br>Surname: "+surname+"<br>Age: "+
+              " "+age+"<br>Login: "+login+"<br>Gender: "+gender);
 
       prWr.println("</body>");
       prWr.println("</html>");

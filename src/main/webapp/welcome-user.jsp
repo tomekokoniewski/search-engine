@@ -12,6 +12,7 @@ Hello from session scope ${sessionScope.sessionName}!<br/>
 
 Salary ${salary}<br/>
 
+
 <c:set var="bonus" scope="request" value="${salary*1.20}"/>
 
 <c:out value="Your salary with bonus is: ${bonus}."/><br/>

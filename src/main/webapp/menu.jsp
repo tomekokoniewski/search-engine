@@ -3,4 +3,11 @@
     <li><a href="/add-user.jsp" >add user (protected)</a></li>
     <li><a href="/add-user-step-1.jsp" >add user in steps</a></li>
     <li><a href="/statistics" >users list</a></li>
+    <li><a href="/login.jsp" >login</a></li>
+
+</ul>
+<div></div>
+<ul>
+    <li><a href="/welcome-user?name=Tomek&salary=100" >welcome-user</a></li>
+
 </ul>
