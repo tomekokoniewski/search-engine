@@ -17,6 +17,7 @@ import java.io.PrintWriter;
 @WebServlet("/add-user-steps")
 public class AddUserServletSteps extends HttpServlet {
 
+
     @EJB
     private //?
             UsersRepositoryDao usersRepositoryDao;
@@ -27,6 +28,7 @@ public class AddUserServletSteps extends HttpServlet {
 
         if (req.getParameter("step").equals("1")) {
             req.getSession().setAttribute("id", req.getParameter("id"));
+
             req.getSession().setAttribute("login", req.getParameter("login"));
 
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("/add-user-step-2.jsp");
@@ -50,13 +52,34 @@ public class AddUserServletSteps extends HttpServlet {
             user.setSurname((String) req.getSession().getAttribute("surname"));
             user.setAge(Integer.parseInt((String) req.getSession().getAttribute("age")));
 
-            if(req.getSession().getAttribute("gender")=="MAN")
+            if(req.getSession().getAttribute("gender").equals("MAN"))
                 user.setGender((Gender.MAN));
-            else if (req.getSession().getAttribute("gender")=="WOMAN")
+            else if (req.getSession().getAttribute("gender").equals("WOMAN"))
                 user.setGender((Gender.WOMAN));
 
             usersRepositoryDao.addUser(user);
-            req.getSession().invalidate();
+//            req.getSession().invalidate();
+
+            resp.setContentType("text/html;charset=UTF-8");
+            PrintWriter prWr = resp.getWriter();
+
+            prWr.println("<!DOCTYPE html>");
+            prWr.println("<html>");
+            prWr.println("<body>");
+
+            prWr.println("<div>[<a href=\"<c:url value=\"/index.jsp\"/>\">BACK <- Strona główna</a>]</div>");
+            prWr.println("Dodano uzytkownika: <br>");
+
+           prWr.println("<table><tr><td>ID: </td><td>"+user.getId()+"</td></tr>"
+                   +"<tr><td>Name: </td><td>"+user.getName()+"</td></tr>"
+                   +"<tr><td>Surname: </td><td>"+user.getSurname()+"</td></tr>"
+                   +"<tr><td>Age: </td><td>"+user.getAge()+"</td></tr>"
+                   +"<tr><td>Login: </td><td>"+user.getLogin()+"</td></tr>"
+                   +"<tr><td>Gender: </td><td>"+user.getGender()+"</td></tr></table>");
+
+            prWr.println("</body>");
+            prWr.println("</html>");
+
         }
    }
 }
